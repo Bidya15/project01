@@ -1,0 +1,124 @@
+.header {
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 6rem;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-dim);
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.feedbackCard {
+  max-width: 800px;
+  margin: 0 auto 6rem auto;
+  padding: 4rem;
+}
+
+.ratingSection {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.ratingSection p {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.star {
+  color: var(--secondary);
+  opacity: 0.2;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.star:hover {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+
+.activeStar {
+  color: #ffc107;
+  fill: #ffc107;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inputGroup label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.toggleGroup {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggleBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: white;
+}
+
+.toggleBtn.active {
+  background: #ffffff;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .title { font-size: 2.75rem; }
+  .feedbackCard { padding: 3rem 2rem; }
+  .toggleGroup { grid-template-columns: repeat(2, 1fr); }
+}

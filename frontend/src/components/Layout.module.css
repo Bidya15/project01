@@ -1,0 +1,406 @@
+.layoutWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  background: white;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.navbarScrolled {
+  box-shadow: var(--shadow-md);
+  height: 64px;
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.logoIcon {
+  background: var(--primary);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.brand:hover .logoIcon {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+.brandName {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.brandAccent {
+  color: var(--primary);
+}
+
+.navGroup {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.desktopNav {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navItem {
+  text-decoration: none;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navItem:hover,
+.active {
+  color: var(--primary);
+}
+
+.navDivider {
+  width: 1px;
+  height: 16px;
+  background: var(--card-border);
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.internalLinks {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.appLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.appLink:hover {
+  background: var(--surface);
+  color: var(--primary);
+}
+
+.appActive {
+  background: var(--primary-glow) !important;
+  color: var(--primary) !important;
+}
+
+.logoutBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-dim);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background: #fff5f5;
+  color: var(--danger);
+  border-color: #ffe3e3;
+}
+
+.authGroup {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.loginBtn {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mainContent {
+  flex: 1;
+  padding-top: 72px;
+  /* Offset for fixed navbar */
+}
+
+/* Footer Styles */
+.footer {
+  padding: 6rem 0 3rem;
+  background: var(--surface);
+  border-top: 1px solid var(--card-border);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.footerInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerDesc {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.linkStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.linkStack h5 {
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.linkStack a {
+  text-decoration: none;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.linkStack a:hover {
+  color: var(--primary);
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.copyright {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.footerStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--success);
+  letter-spacing: 0.025em;
+}
+
+.statusPing {
+  width: 6px;
+  height: 6px;
+  background: var(--success);
+  border-radius: 50%;
+  position: relative;
+}
+
+.statusPing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--success);
+  border-radius: 50%;
+  animation: ping 1.5s infinite;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.version {
+  color: var(--text-light);
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* ---- Hamburger & Mobile Menu ---- */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text);
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  z-index: 1100;
+}
+
+.hamburger:hover {
+  background: var(--surface);
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 360px;
+  height: 100vh;
+  background: white;
+  box-shadow: -4px 0 40px rgba(0, 0, 0, 0.12);
+  z-index: 1050;
+  overflow-y: auto;
+}
+
+.mobileMenuInner {
+  padding: 6rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100%;
+}
+
+.mobileSection {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileNavItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.mobileNavItem:hover {
+  background: var(--surface);
+  color: var(--primary);
+}
+
+.mobileNavActive {
+  background: var(--primary-glow) !important;
+  color: var(--primary) !important;
+}
+
+.mobileActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.mobileFullBtn {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .navGroup {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+  }
+}
