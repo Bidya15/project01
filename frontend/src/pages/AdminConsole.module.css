@@ -694,8 +694,9 @@
 
   .content {
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: auto;
     padding-bottom: 2rem;
+    -webkit-overflow-scrolling: touch;
   }
 
   .terminalContainer {
@@ -765,13 +766,20 @@
   }
 
   .terminalContainer {
-    padding: 1.5rem;
+    padding: 1rem;
     font-size: 0.75rem;
   }
 
   .logEntry {
     flex-direction: column;
     gap: 0.25rem;
+  }
+
+  @media (max-width: 360px) {
+    .terminalContainer {
+      padding: 0.75rem;
+      font-size: 0.7rem;
+    }
   }
 }
 

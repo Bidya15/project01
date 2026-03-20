@@ -707,11 +707,21 @@
   }
 
   .primaryResult {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   .infoCard {
-    padding: 2rem;
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 360px) {
+    .primaryResult {
+      padding: 1.25rem;
+    }
+
+    .resHeader h2 {
+      font-size: 1.75rem;
+    }
   }
 }
 
