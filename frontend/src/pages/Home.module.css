@@ -349,18 +349,21 @@
 
   /* Keep search bar as a row — just reduce padding */
   .searchBar {
-    padding: 0.5rem 0.5rem 0.5rem 1rem;
-    border-radius: 100px;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    gap: 1rem;
   }
 
   .searchInput {
-    font-size: 0.95rem;
-    padding: 0.5rem 0.75rem;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0 !important;
   }
 
   .searchBtn {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9rem;
+    width: 100%;
+    padding: 1rem;
   }
 
   .searchIcon {
@@ -501,6 +504,12 @@
 
   .feedbackGrid {
     grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .featureCard {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
 
@@ -517,12 +526,13 @@
   }
 
   .title {
-    font-size: 2.25rem;
+    font-size: 2.15rem;
+    line-height: 1.1;
   }
 
   @media (max-width: 360px) {
     .title {
-      font-size: 1.85rem;
+      font-size: 1.75rem;
     }
   }
 

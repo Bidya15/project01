@@ -228,8 +228,17 @@ export default function AdminConsole() {
       </header>
 
       {/* Mobile-only Tab Bar — sits outside the grid, now draggable */}
-      <div className={styles.mobileTabBar}>
-        <div className={styles.mobileTabScrollItems}>
+      <div className={styles.mobileTabBar} ref={mobileNavRef}>
+        <motion.div
+          className={styles.mobileTabScrollItems}
+          drag="x"
+          dragConstraints={mobileConstraints}
+          dragListener={true}
+          ref={mobileNavScrollRef}
+          dragElastic={0.1}
+          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+          whileTap={{ cursor: 'grabbing' }}
+        >
           <button className={`${styles.mobileTab} ${activeView === 'overview' ? styles.mobileTabActive : ''}`} onClick={() => setActiveView('overview')}>
             <Activity size={16} /><span>Overview</span>
           </button>
@@ -245,7 +254,7 @@ export default function AdminConsole() {
           <button className={`${styles.mobileTab} ${activeView === 'audit' ? styles.mobileTabActive : ''}`} onClick={() => setActiveView('audit')}>
             <Terminal size={16} /><span>Audit Terminal</span>
           </button>
-        </div>
+        </motion.div>
       </div>
 
       <div className={styles.adminGrid}>
@@ -378,80 +387,82 @@ export default function AdminConsole() {
                     />
                   </div>
                 </div>
-                <table className={styles.adminTable}>
-                  <thead>
-                    <tr>
-                      <th>Identifier</th>
-                      <th>Account Status</th>
-                      <th>Privilege</th>
-                      <th style={{ textAlign: 'right' }}>Management</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {users.filter(u => u.username.includes(searchTerm)).map((user) => (
-                      <tr key={user.id}>
-                        <td>
-                          <div className={styles.userName}>{user.username}</div>
-                          <div className={styles.userEmail}>{user.email}</div>
-                        </td>
-                        <td>
-                          {user.enabled ? (
-                            <span className={`${styles.roleBadge} ${styles.roleUser}`} style={{ background: '#e6f4ea', color: 'var(--success)' }}>
-                              ACTIVE
-                            </span>
-                          ) : (
-                            <span className={`${styles.roleBadge}`} style={{ background: '#fef2f2', color: 'var(--danger)' }}>
-                              BLOCKED
-                            </span>
-                          )}
-                        </td>
-                        <td>
-                          <select
-                            className={styles.roleSelector}
-                            value={user.role}
-                            onChange={(e) => handleChangeRole(user.id, e.target.value)}
-                          >
-                            <option value="ROLE_USER">User</option>
-                            <option value="ROLE_ADMIN">Admin</option>
-                          </select>
-                        </td>
-                        <td style={{ textAlign: 'right' }}>
-                          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
-                            {user.email === 'bidyasingrongpi90@gmail.com' || (currentUser && currentUser.username === user.username) ? (
-                              <span className={styles.confirmedLabel} style={{ color: '#64748b' }}>
-                                <ShieldCheck size={14} /> {user.email === 'bidyasingrongpi90@gmail.com' ? 'SYSTEM CORE' : 'CURRENT SESSION'}
+                <div className={styles.tableWrapper}>
+                  <table className={styles.adminTable}>
+                    <thead>
+                      <tr>
+                        <th>Identifier</th>
+                        <th>Account Status</th>
+                        <th>Privilege</th>
+                        <th style={{ textAlign: 'right' }}>Management</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {users.filter(u => u.username.includes(searchTerm)).map((user) => (
+                        <tr key={user.id}>
+                          <td>
+                            <div className={styles.userName}>{user.username}</div>
+                            <div className={styles.userEmail}>{user.email}</div>
+                          </td>
+                          <td>
+                            {user.enabled ? (
+                              <span className={`${styles.roleBadge} ${styles.roleUser}`} style={{ background: '#e6f4ea', color: 'var(--success)' }}>
+                                ACTIVE
                               </span>
                             ) : (
-                              <>
-                                {user.role !== 'ROLE_ADMIN' && (
-                                  <>
-                                    {user.enabled ? (
-                                      <button className={`${styles.actionBtn} ${styles.actionBtnBlock}`} onClick={() => handleBlock(user.id)}>
-                                        Block
-                                      </button>
-                                    ) : (
-                                      <button className={styles.verifyBtn} onClick={() => handleUnblock(user.id)}>
-                                        Unblock
-                                      </button>
-                                    )}
-                                    <button className={styles.actionBtnDelete} onClick={() => handleReject(user.id)}>
-                                      <Trash2 size={16} />
-                                    </button>
-                                  </>
-                                )}
-                                {user.role === 'ROLE_ADMIN' && (
-                                  <button className={`${styles.actionBtn} ${styles.actionBtnBlock}`} onClick={() => handleBlock(user.id)}>
-                                    Block
-                                  </button>
-                                )}
-                              </>
+                              <span className={`${styles.roleBadge}`} style={{ background: '#fef2f2', color: 'var(--danger)' }}>
+                                BLOCKED
+                              </span>
                             )}
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                          </td>
+                          <td>
+                            <select
+                              className={styles.roleSelector}
+                              value={user.role}
+                              onChange={(e) => handleChangeRole(user.id, e.target.value)}
+                            >
+                              <option value="ROLE_USER">User</option>
+                              <option value="ROLE_ADMIN">Admin</option>
+                            </select>
+                          </td>
+                          <td style={{ textAlign: 'right' }}>
+                            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
+                              {user.email === 'bidyasingrongpi90@gmail.com' || (currentUser && currentUser.username === user.username) ? (
+                                <span className={styles.confirmedLabel} style={{ color: '#64748b' }}>
+                                  <ShieldCheck size={14} /> {user.email === 'bidyasingrongpi90@gmail.com' ? 'SYSTEM CORE' : 'CURRENT SESSION'}
+                                </span>
+                              ) : (
+                                <>
+                                  {user.role !== 'ROLE_ADMIN' && (
+                                    <>
+                                      {user.enabled ? (
+                                        <button className={`${styles.actionBtn} ${styles.actionBtnBlock}`} onClick={() => handleBlock(user.id)}>
+                                          Block
+                                        </button>
+                                      ) : (
+                                        <button className={styles.verifyBtn} onClick={() => handleUnblock(user.id)}>
+                                          Unblock
+                                        </button>
+                                      )}
+                                      <button className={styles.actionBtnDelete} onClick={() => handleReject(user.id)}>
+                                        <Trash2 size={16} />
+                                      </button>
+                                    </>
+                                  )}
+                                  {user.role === 'ROLE_ADMIN' && (
+                                    <button className={`${styles.actionBtn} ${styles.actionBtnBlock}`} onClick={() => handleBlock(user.id)}>
+                                      Block
+                                    </button>
+                                  )}
+                                </>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </motion.div>
             )}
 
