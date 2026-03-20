@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15
+    container_name: phish-db
+    environment:
+      POSTGRES_DB: phish_ai_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  ml-service:
+    build: ./ml-service
+    container_name: phish-ml
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  backend:
+    build: ./backend
+    container_name: phish-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+      - ml-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/phish_ai_db
+      - ML_SERVICE_URL=http://ml-service:8000
+
+  frontend:
+    build: ./frontend
+    container_name: phish-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
