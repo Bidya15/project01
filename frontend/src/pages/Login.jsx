@@ -31,7 +31,7 @@ export default function Login({ onLoginSuccess }) {
 
   return (
     <div className={styles.authContainer}>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
@@ -46,8 +46,8 @@ export default function Login({ onLoginSuccess }) {
         </div>
 
         {error && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} 
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className={styles.errorBadge}
           >
@@ -60,30 +60,30 @@ export default function Login({ onLoginSuccess }) {
             <label className={styles.label}>Username</label>
             <div className={styles.inputWrapper}>
               <User size={18} className={styles.inputIcon} />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 className={shared.inputField}
                 placeholder="Enter your username"
                 style={{ paddingLeft: '3.5rem' }}
-                value={username} 
-                onChange={e => setUsername(e.target.value)} 
-                required 
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                required
               />
             </div>
           </div>
-          
+
           <div className={styles.inputGroup}>
             <label className={styles.label}>Password</label>
             <div className={styles.inputWrapper}>
               <Lock size={18} className={styles.inputIcon} />
-              <input 
-                type={showPassword ? "text" : "password"} 
+              <input
+                type={showPassword ? "text" : "password"}
                 className={shared.inputField}
                 placeholder="••••••••"
                 style={{ paddingLeft: '3.5rem', paddingRight: '3.5rem' }}
-                value={password} 
-                onChange={e => setPassword(e.target.value)} 
-                required 
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                required
               />
               <button
                 type="button"
@@ -100,10 +100,10 @@ export default function Login({ onLoginSuccess }) {
             </div>
           </div>
 
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.99 }}
-            type="submit" 
+            type="submit"
             className={shared.btnPrimary}
             disabled={loading}
             style={{ marginTop: '1rem', height: '56px', width: '100%', justifyContent: 'center' }}
@@ -130,7 +130,9 @@ export default function Login({ onLoginSuccess }) {
                 }
               }}
               onError={() => setError('Google login failed')}
-              useOneTap
+              theme="filled_blue"
+              shape="pill"
+              text="signin_with"
             />
           </div>
         </form>
