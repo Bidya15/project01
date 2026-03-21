@@ -27,14 +27,16 @@
   border-bottom: 1px solid var(--card-border);
   position: relative;
   z-index: 100;
-  overflow: hidden;
-  /* Hide direct scroll if dragging */
+  overflow-x: auto;
+  /* Native scroll fallback */
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   box-sizing: border-box;
 }
 
 .mobileTabBar::-webkit-scrollbar {
-  height: 4px;
-  display: block;
+  display: none;
 }
 
 .mobileTabBar::-webkit-scrollbar-track {
@@ -688,7 +690,7 @@
   }
 
   .miniCard {
-    padding: 1.25rem 1rem;
+    padding: 1.25rem 0.8rem;
   }
 
   .content {

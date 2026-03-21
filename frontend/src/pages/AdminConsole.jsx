@@ -21,19 +21,20 @@ export default function AdminConsole() {
     activeAdmins: 0
   });
 
+  // Automated ResizeObserver for dynamic drag constraints
   useEffect(() => {
+    // We can still keep the manual calculation but dragConstraints={mobileNavRef} is better
     const updateConstraints = () => {
       if (mobileNavRef.current && mobileNavScrollRef.current) {
         const parentWidth = mobileNavRef.current.offsetWidth;
         const contentWidth = mobileNavScrollRef.current.scrollWidth;
-        setMobileConstraints({ left: -(contentWidth - parentWidth), right: 0 });
+        setMobileConstraints({ left: -(contentWidth - parentWidth), right: 100 });
       }
     };
 
     const observer = new ResizeObserver(updateConstraints);
     if (mobileNavRef.current) observer.observe(mobileNavRef.current);
     if (mobileNavScrollRef.current) observer.observe(mobileNavScrollRef.current);
-
     updateConstraints();
     return () => observer.disconnect();
   }, []);
@@ -233,7 +234,10 @@ export default function AdminConsole() {
           className={styles.mobileTabScrollItems}
           drag="x"
           dragConstraints={mobileConstraints}
-          dragElastic={0.1}
+          dragElastic={0.2}
+          dragMomentum={true}
+          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+          whileTap={{ cursor: 'grabbing' }}
           ref={mobileNavScrollRef}
         >
           <button className={`${styles.mobileTab} ${activeView === 'overview' ? styles.mobileTabActive : ''}`} onClick={() => setActiveView('overview')}>
