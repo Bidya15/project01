@@ -10,7 +10,6 @@ export default function AdminConsole() {
   const currentUser = authService.getCurrentUser();
   const mobileNavRef = React.useRef(null);
   const mobileNavScrollRef = React.useRef(null);
-  const [mobileConstraints, setMobileConstraints] = React.useState({ left: 0, right: 0 });
 
   const [stats, setStats] = useState({
     totalUsers: 0,
@@ -21,23 +20,6 @@ export default function AdminConsole() {
     activeAdmins: 0
   });
 
-  // Automated ResizeObserver for dynamic drag constraints
-  useEffect(() => {
-    // We can still keep the manual calculation but dragConstraints={mobileNavRef} is better
-    const updateConstraints = () => {
-      if (mobileNavRef.current && mobileNavScrollRef.current) {
-        const parentWidth = mobileNavRef.current.offsetWidth;
-        const contentWidth = mobileNavScrollRef.current.scrollWidth;
-        setMobileConstraints({ left: -(contentWidth - parentWidth), right: 100 });
-      }
-    };
-
-    const observer = new ResizeObserver(updateConstraints);
-    if (mobileNavRef.current) observer.observe(mobileNavRef.current);
-    if (mobileNavScrollRef.current) observer.observe(mobileNavScrollRef.current);
-    updateConstraints();
-    return () => observer.disconnect();
-  }, []);
 
   const [users, setUsers] = useState([]);
   const [reports, setReports] = useState([]);
@@ -230,14 +212,8 @@ export default function AdminConsole() {
 
       {/* Mobile-only Tab Bar — sits outside the grid, now draggable */}
       <div className={styles.mobileTabBar} ref={mobileNavRef}>
-        <motion.div
+        <div
           className={styles.mobileTabScrollItems}
-          drag="x"
-          dragConstraints={mobileConstraints}
-          dragElastic={0.2}
-          dragMomentum={true}
-          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-          whileTap={{ cursor: 'grabbing' }}
           ref={mobileNavScrollRef}
         >
           <button className={`${styles.mobileTab} ${activeView === 'overview' ? styles.mobileTabActive : ''}`} onClick={() => setActiveView('overview')}>
@@ -253,9 +229,9 @@ export default function AdminConsole() {
             <MessageSquare size={16} /><span>Inquiries</span>
           </button>
           <button className={`${styles.mobileTab} ${activeView === 'audit' ? styles.mobileTabActive : ''}`} onClick={() => setActiveView('audit')}>
-            <Terminal size={16} /><span>Audit Terminal</span>
+            <Terminal size={16} /><span>Audit Termination</span>
           </button>
-        </motion.div>
+        </div>
       </div>
 
       <div className={styles.adminGrid}>
