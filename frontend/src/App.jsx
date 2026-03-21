@@ -16,6 +16,7 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Cookies from './pages/Cookies';
 import AdminConsole from './pages/AdminConsole';
+import ScrollToTop from './components/ScrollToTop';
 import { authService } from './services/api';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { NotificationProvider } from './context/NotificationContext';
@@ -45,10 +46,10 @@ function App() {
 
   if (loading) {
     return (
-      <div style={{ 
-        height: '100vh', 
-        display: 'flex', 
-        alignItems: 'center', 
+      <div style={{
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
         background: '#0a0a0b',
         color: '#ffffff',
@@ -66,6 +67,7 @@ function App() {
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <NotificationProvider>
         <Router>
+          <ScrollToTop />
           <Layout user={currentUser} onLogout={() => setCurrentUser(null)}>
             <Routes>
               <Route path="/" element={<Home />} />
