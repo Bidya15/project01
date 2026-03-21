@@ -38,10 +38,10 @@ export default function Home() {
   ];
 
   const [stats, setStats] = React.useState([
-    { label: 'Detection Rate', value: '99.9%', icon: CheckCircle2 },
-    { label: 'Latency', value: '< 200ms', icon: Zap },
-    { label: 'Threats Blocked', value: '1.2M+', icon: Shield },
-    { label: 'Data Nodes', value: '85', icon: Globe }
+    { label: 'Detection Rate', value: '...', icon: CheckCircle2 },
+    { label: 'Latency', value: '...', icon: Zap },
+    { label: 'Threats Blocked', value: '0', icon: Shield },
+    { label: 'Data Nodes', value: '...', icon: Globe }
   ]);
 
   React.useEffect(() => {
