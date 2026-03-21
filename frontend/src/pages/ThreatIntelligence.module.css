@@ -119,6 +119,8 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text);
+  word-break: break-all;
+  /* Prevent long domains from pushing card width */
 }
 
 .meta {
@@ -178,6 +180,14 @@
 }
 
 @media (max-width: 480px) {
+  .threatIntelPage {
+    overflow-x: hidden;
+  }
+
+  .intelGrid {
+    gap: 1.25rem;
+  }
+
   .header {
     margin-bottom: 2rem;
     padding-top: 2rem;
@@ -188,7 +198,10 @@
   }
 
   .intelCard {
-    padding: 1.25rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .listItem {
@@ -200,5 +213,15 @@
 
   .statusIndicator {
     align-self: flex-start;
+  }
+}
+
+@media (max-width: 360px) {
+  .intelCard {
+    padding: 0.85rem;
+  }
+
+  .domain {
+    font-size: 0.85rem;
   }
 }
