@@ -128,6 +128,8 @@
   font-size: 0.9rem;
   font-weight: 650;
   color: var(--text);
+  word-break: break-all;
+  /* Prevent overflow from long URLs */
 }
 
 .itemMeta {
@@ -551,6 +553,26 @@
 
   .intelGrid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .intelCard {
+    padding: 2rem;
+    min-height: auto;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .cardSearch {
+    width: 100%;
+  }
+
+  .cardSearch input {
+    width: 100%;
   }
 
   .chartsGrid {
@@ -579,7 +601,11 @@
   }
 
   .statCard {
-    padding: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  .intelCard {
+    padding: 1.25rem;
   }
 
   .dashboardHeader {
