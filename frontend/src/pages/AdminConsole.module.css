@@ -688,7 +688,7 @@
   }
 
   .miniCard {
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem 1rem;
   }
 
   .content {
@@ -745,7 +745,7 @@
   }
 
   .statsRow {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .adminHeader {
