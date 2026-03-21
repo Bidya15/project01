@@ -40,7 +40,7 @@
 .description {
   font-size: 1.25rem;
   color: var(--text-dim);
-  max-width: 700px;
+  max-width: 600px;
   width: 100%;
   line-height: 1.6;
   overflow-wrap: break-word;
@@ -512,10 +512,12 @@
   .homeWrapper {
     gap: 4rem;
     padding-bottom: 4rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .hero {
-    padding: 4rem 3rem 2rem;
+    padding: 4rem 1rem 2rem;
     min-height: 50vh;
   }
 
@@ -532,7 +534,7 @@
     }
 
     .description {
-      font-size: 0.82rem;
+      font-size: 0.80rem;
     }
   }
 
@@ -586,6 +588,8 @@
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
     padding: 1.25rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   @media (max-width: 360px) {
@@ -604,6 +608,9 @@
   }
 
   .featureCard {
-    padding: 2rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
