@@ -233,11 +233,8 @@ export default function AdminConsole() {
           className={styles.mobileTabScrollItems}
           drag="x"
           dragConstraints={mobileConstraints}
-          dragListener={true}
-          ref={mobileNavScrollRef}
           dragElastic={0.1}
-          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-          whileTap={{ cursor: 'grabbing' }}
+          ref={mobileNavScrollRef}
         >
           <button className={`${styles.mobileTab} ${activeView === 'overview' ? styles.mobileTabActive : ''}`} onClick={() => setActiveView('overview')}>
             <Activity size={16} /><span>Overview</span>

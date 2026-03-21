@@ -21,7 +21,6 @@
 /* Mobile Tab Bar (Hidden on Desktop) */
 .mobileTabBar {
   display: none;
-  /* Desktop hidden */
   width: 100%;
   margin: 0 0 2rem 0;
   background: var(--surface);
@@ -29,9 +28,8 @@
   position: relative;
   z-index: 100;
   overflow: hidden;
-  /* Important for framer-motion drag */
+  /* Hide direct scroll if dragging */
   box-sizing: border-box;
-  touch-action: none;
 }
 
 .mobileTabBar::-webkit-scrollbar {
@@ -519,7 +517,6 @@
   font-weight: 700;
   color: var(--text);
   font-size: 1rem;
-  word-break: break-all;
 }
 
 .reportMeta {
@@ -670,24 +667,14 @@
 
   .reportCard {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     align-items: flex-start;
     padding: 1.5rem;
   }
 
-  .reportActions {
-    width: 100%;
-  }
-
-  .reportActions div {
-    width: 100%;
-    justify-content: flex-start !important;
-  }
-
-  .verifyBtn,
-  .actionBtnDelete {
-    flex: 1;
-    justify-content: center;
+  .modal {
+    padding: 1.5rem;
+    border-radius: 16px;
   }
 
   .tableHeaderSection {
@@ -706,19 +693,9 @@
 
   .content {
     width: 100%;
-    padding-bottom: 2rem;
-  }
-
-  .tableWrapper {
-    width: 100%;
     overflow-x: auto;
+    padding-bottom: 2rem;
     -webkit-overflow-scrolling: touch;
-    border-radius: 12px;
-    border: 1px solid var(--card-border);
-  }
-
-  .adminTable {
-    min-width: 700px;
   }
 
   .terminalContainer {
@@ -753,13 +730,18 @@
     font-size: 2rem;
   }
 
-  .adminTable {
-    font-size: 0.78rem;
+  .tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
   }
 
-  .adminTable th,
-  .adminTable td {
-    padding: 0.6rem 0.5rem;
+  .adminTable {
+    min-width: 600px;
+    font-size: 0.78rem;
   }
 
   .statsRow {
