@@ -86,6 +86,7 @@ export const adminService = {
 
 export const feedbackService = {
   submit: (data) => api.post('feedback/submit', data),
+  getPublic: () => api.get('feedback/public'),
   getAll: () => api.get('feedback/all'),
   toggleFeature: (id) => api.put(`feedback/${id}/feature`, {}),
   delete: (id) => api.delete(`feedback/${id}`),

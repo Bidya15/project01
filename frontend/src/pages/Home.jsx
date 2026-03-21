@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Shield, Zap, BarChart3, Globe, ArrowRight, CheckCircle2, Search, Mail, MessageSquare, Terminal, FileText, Link as LinkIcon, Quote, Star } from 'lucide-react';
 import shared from '../styles/Shared.module.css';
 import styles from './Home.module.css';
-import { authService } from '../services/api';
+import { authService, statsService, feedbackService } from '../services/api';
 import { useNotification } from '../context/NotificationContext';
 
 const containerVariants = {
@@ -47,16 +47,14 @@ export default function Home() {
   React.useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch('/api/stats');
-        if (response.ok) {
-          const data = await response.json();
-          setStats([
-            { label: 'Detection Rate', value: data.detectionRate, icon: CheckCircle2 },
-            { label: 'Latency', value: data.latency, icon: Zap },
-            { label: 'Threats Blocked', value: data.threatsBlocked, icon: Shield },
-            { label: 'Data Nodes', value: data.dataNodes, icon: Globe }
-          ]);
-        }
+        const response = await statsService.getGlobalStats();
+        const data = response.data;
+        setStats([
+          { label: 'Detection Rate', value: data.detectionRate, icon: CheckCircle2 },
+          { label: 'Latency', value: data.latency, icon: Zap },
+          { label: 'Threats Blocked', value: data.threatsBlocked, icon: Shield },
+          { label: 'Data Nodes', value: data.dataNodes, icon: Globe }
+        ]);
       } catch (error) {
         console.error('Error fetching stats:', error);
       }
@@ -64,11 +62,8 @@ export default function Home() {
 
     const fetchFeedbacks = async () => {
       try {
-        const response = await fetch('/api/feedback/public');
-        if (response.ok) {
-          const data = await response.json();
-          setFeedbacks(data);
-        }
+        const response = await feedbackService.getPublic();
+        setFeedbacks(response.data);
       } catch (error) {
         console.error('Error fetching feedback:', error);
       }
