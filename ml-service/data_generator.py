@@ -29,8 +29,7 @@ def generate_synthetic_data(n_samples=500):
             base = random.choice(legit_domains)
             url = f"https://{base}/home"
             
-        # For training, we mock the expensive lookups in this generator 
-        # to avoid network latency while still teaching the model patterns
+        
         features = {
             'url_length': len(url),
             'dot_count': url.count('.'),

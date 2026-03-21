@@ -196,7 +196,6 @@ export default function Layout({ children, user, onLogout }) {
               <Link to="/features">Platform</Link>
               <Link to="/scanner">Scanner</Link>
               <Link to="/dashboard">Console</Link>
-              <Link to="/dashboard">Console</Link>
             </div>
 
             <div className={styles.linkStack}>

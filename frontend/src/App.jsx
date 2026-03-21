@@ -15,6 +15,7 @@ import Report from './pages/Report';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Cookies from './pages/Cookies';
+import Security from './pages/Security';
 import AdminConsole from './pages/AdminConsole';
 import ScrollToTop from './components/ScrollToTop';
 import { authService } from './services/api';
@@ -82,6 +83,7 @@ function App() {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/cookies" element={<Cookies />} />
+              <Route path="/security" element={<Security />} />
               <Route path="/scanner" element={<PrivateRoute user={currentUser}><Scanner /></PrivateRoute>} />
               <Route path="/dashboard" element={<PrivateRoute user={currentUser}><Dashboard /></PrivateRoute>} />
               <Route path="/admin" element={<AdminRoute user={currentUser}><AdminConsole /></AdminRoute>} />
